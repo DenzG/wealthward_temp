@@ -24,7 +24,6 @@ if (empty($sellToken) || empty($buyToken) || empty($sellAmount) || empty($taker)
 $curl = curl_init();
 $url_path ="https://api.0x.org/swap/allowance-holder/quote?chainId={$chainId}&sellToken={$sellToken}&buyToken={$buyToken}&sellAmount={$sellAmount}&taker={$taker}&slippagePercentage={$slippagePercentage}";
 
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => $url_path,
   CURLOPT_RETURNTRANSFER => true,
@@ -40,13 +39,9 @@ curl_setopt_array($curl, array(
   ),
 ));
 
-
 $response = curl_exec($curl);
 $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-
 unset($curl);
-
 
 if ($httpCode !== 200) {
   http_response_code($httpCode);
